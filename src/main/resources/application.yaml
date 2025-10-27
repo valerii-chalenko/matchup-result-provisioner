@@ -1,0 +1,18 @@
+---
+spring:
+  application:
+    name: score-provisioner
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    producer:
+      retries: 3
+      properties:
+        retry.backoff.ms: 1000
+        acks: all
+        delivery.timeout.ms: 30000
+        request.timeout.ms: 15000
+    template:
+      default-topic: event.score
+  threads:
+    virtual:
+      enabled: true
