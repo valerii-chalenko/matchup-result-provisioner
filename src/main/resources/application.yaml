@@ -1,0 +1,21 @@
+---
+spring:
+  application:
+    name: score-provisioner
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    template:
+      default-topic: event.score
+  threads:
+    virtual:
+      enabled: true
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=10m
+
+integration:
+  http:
+    score-service:
+      url: ${EXTERNAL_SERVICE_URL}

@@ -1,0 +1,15 @@
+---
+
+spring:
+  docker:
+    compose:
+      lifecycle-management: start_only
+  kafka:
+    bootstrap-servers: localhost:9092
+
+integration:
+  http:
+    score-service:
+      url: http://localhost:8081
+server:
+  port: 8082

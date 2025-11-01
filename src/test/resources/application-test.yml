@@ -1,0 +1,5 @@
+---
+integration:
+  http:
+    score-service:
+      url: http://fake.url

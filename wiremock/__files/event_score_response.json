@@ -1,0 +1,4 @@
+{
+  "eventId": "{{request.query.event_id.[0]}}",
+  "currentScore": "0:{{pickRandom '0' '1' '2'}}"
+}

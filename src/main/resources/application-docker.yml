@@ -1,0 +1,9 @@
+---
+spring:
+  kafka:
+    bootstrap-servers: broker:29092
+
+integration:
+  http:
+    score-service:
+      url: http://wiremock:8080
