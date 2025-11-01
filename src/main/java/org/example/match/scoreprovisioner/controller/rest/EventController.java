@@ -1,5 +1,6 @@
 package org.example.match.scoreprovisioner.controller.rest;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.match.scoreprovisioner.controller.rest.model.ScoreRequestDto;
@@ -17,8 +18,7 @@ public class EventController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/event/status")
-    public void eventStatus(@RequestBody ScoreRequestDto request) {
-
+    public void eventStatus(@RequestBody @Valid ScoreRequestDto request) {
         scoreTaskService.observeEventScore(request);
     }
 }

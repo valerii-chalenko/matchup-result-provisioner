@@ -17,12 +17,14 @@ public class ScoreClient {
 
     private final RestClient scoreServiceRestClient;
 
-    @Retryable(maxAttempts = 5, backoff = @Backoff(delay = 1000))
+    @Retryable(backoff = @Backoff(delay = 500, multiplier = 2.0))
     public ScoreResponseDto getScore(UUID id) {
-
         return scoreServiceRestClient
                 .get()
-                .uri("/api/v1/event/score?event_id=" + id)
+                .uri(uriBuilder -> uriBuilder
+                        .path("/api/v1/event/score")
+                        .queryParam("event_id", id)
+                        .build())
                 .retrieve()
                 .body(ScoreResponseDto.class);
     }

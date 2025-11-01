@@ -10,6 +10,11 @@ spring:
     virtual:
       enabled: true
 
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=10m
+
 integration:
   http:
     score-service:

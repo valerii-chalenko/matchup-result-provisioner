@@ -65,15 +65,12 @@ class ScoreTaskTest {
     }
 
     @Test
-    @DisplayName("Should cancel score task on external API failure")
+    @DisplayName("Should not send Kafka message on external API failure")
     void externalApiFailure() {
-
         when(scoreClient.getScore(any())).thenThrow(new IllegalArgumentException());
-
         scoreTask.run();
-
         verify(scoreClient).getScore(givenEventId);
         verify(kafkaTemplate, never()).send(eq("event.score"), eq(givenEventId), eq(givenScore));
-        verify(taskScheduler).unScheduleScoreObservation(givenEventId);
+        verify(taskScheduler, never()).unScheduleScoreObservation(any());
     }
 }
